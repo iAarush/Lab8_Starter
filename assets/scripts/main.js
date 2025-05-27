@@ -118,7 +118,9 @@ async function getRecipes() {
         }
       } catch (error) {
         // A10. TODO - Log any errors from catch using console.error
+        console.error(error); 
         // A11. TODO - Pass any errors to the Promise's reject() function
+        reject(error); 
       }
     }
   })
