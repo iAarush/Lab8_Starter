@@ -62,8 +62,8 @@ function initializeServiceWorker() {
       .catch(err => {
         console.log('ServiceWorker registration failed:', err);
       })
-    }
-  }); 
+    }); 
+  }
   // STEPS B6 ONWARDS WILL BE IN /sw.js
 }
 
