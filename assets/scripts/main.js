@@ -45,14 +45,25 @@ function initializeServiceWorker() {
   // We first must register our ServiceWorker here before any of the code in
   // sw.js is executed.
   // B1. TODO - Check if 'serviceWorker' is supported in the current browser
-  // B2. TODO - Listen for the 'load' event on the window object.
-  // Steps B3-B6 will be *inside* the event listener's function created in B2
-  // B3. TODO - Register './sw.js' as a service worker (The MDN article
-  //            "Using Service Workers" will help you here)
-  // B4. TODO - Once the service worker has been successfully registered, console
-  //            log that it was successful.
-  // B5. TODO - In the event that the service worker registration fails, console
-  //            log that it has failed.
+  if ('serviceWorker' in navigator) {
+    // B2. TODO - Listen for the 'load' event on the window object.
+    window.addEventListener('load', () => {
+      // Steps B3-B6 will be *inside* the event listener's function created in B2
+      // B3. TODO - Register './sw.js' as a service worker (The MDN article
+      //            "Using Service Workers" will help you here)
+      navigator.serviceWorker.register('./sw.js')
+      // B4. TODO - Once the service worker has been successfully registered, console
+      //            log that it was successful.
+      .then(registration => {
+        console.log('ServiceWorker registration successful with scope:', registration.scope);
+      })
+      // B5. TODO - In the event that the service worker registration fails, console
+      //            log that it has failed.
+      .catch(err => {
+        console.log('ServiceWorker registration failed:', err);
+      })
+    }
+  }); 
   // STEPS B6 ONWARDS WILL BE IN /sw.js
 }
 
@@ -107,7 +118,7 @@ async function getRecipes() {
         //            "await" again
         const responseValue = await response.json(); 
         // A8. TODO - Add the new recipe to the recipes array
-        recipes.push(responseValue); 
+        networkRecipes.push(responseValue); 
         // A9. TODO - Check to see if you have finished retrieving all of the recipes,
         //            if you have, then save the recipes to storage using the function
         //            we have provided. Then, pass the recipes array to the Promise's
