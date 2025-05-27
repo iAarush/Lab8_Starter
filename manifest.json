@@ -2,10 +2,10 @@
     "name": "Lab 8 starter",
     "short_name": "Aarush Mehrotra",
     "description": "",
-    "start_url": "",
+    "start_url": "./index.html",
     "display": "standalone",
-    "background_color": "",
-    "theme_color": "",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
     "icons": [
       {
         "src": "/assets/images/icons/icon-192x192.png",
